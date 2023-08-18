@@ -13,7 +13,7 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-# by default the mode is deployment, not development
+# by default, the mode is deployment, not development
 ARG DEV=false
 # create a virt env inside docker container, 
 # upgrade pip, install requirements,
