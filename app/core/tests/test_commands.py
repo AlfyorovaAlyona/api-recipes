@@ -26,7 +26,7 @@ class CommandTests(SimpleTestCase):
     def test_wait_for_db_delay(self, patched_sleep, patched_check):
         """Test waiting for db if database is NOT ready"""
 
-        # on the 7th time, the db becomes available 
+        # on the 7th time, the db becomes available
         # before, it returned exceptions
         patched_check.side_effect = [Psycopg2Error] * 3 + \
                                     [OperationalError] * 3 + [True]
