@@ -1,4 +1,9 @@
-""""Views fro User API"""
+""""
+Views fro User API.
+API views handles the request made to URL
+around HTTP methods (GET, PUT, POST, ...).
+Useful for non-CRUD APIs.
+"""
 from rest_framework import generics, authentication, permissions
 from rest_framework.settings import api_settings
 from rest_framework.authtoken.views import ObtainAuthToken
