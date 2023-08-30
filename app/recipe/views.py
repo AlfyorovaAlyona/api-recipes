@@ -1,3 +1,7 @@
+"""
+Viewset for Recipe API.
+Viewsets are useful for CRUD APIs.
+"""
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -16,6 +20,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(user=self.request.user).order_by('-id')
 
     def get_serializer_class(self):
+        # If list is requested, the list recipes without description.
         if self.action == 'list':
             return serializers.RecipeSerializer
 

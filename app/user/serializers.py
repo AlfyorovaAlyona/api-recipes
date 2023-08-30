@@ -1,3 +1,4 @@
+"""Serializers for User API."""
 from django.contrib.auth import (
     get_user_model,
     authenticate,
@@ -10,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object."""
 
     class Meta:
-        model = get_user_model()
+        model = get_user_model()  # Get active User model
         fields = ['email', 'password', 'name']
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
 
@@ -27,11 +28,11 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             user.set_password(password)
             user.save()
-
         return user
 
 
 class AuthTokenSerializer(serializers.Serializer):
+    """Serializer for Auth Token."""
     email = serializers.EmailField()
     password = serializers.CharField(
         style={'input_type': 'password'},
@@ -39,6 +40,7 @@ class AuthTokenSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
+        """Authenticate a user"""
         email = attrs.get('email')
         password = attrs.get('password')
         user = authenticate(
