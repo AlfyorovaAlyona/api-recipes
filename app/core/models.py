@@ -8,6 +8,7 @@ from django.contrib.auth.models import (
 )
 
 
+# Class defining operations with User object.
 class UserManager(BaseUserManager):
     """User Manager class."""
     def create_user(self, email, password=None, **extras):
@@ -29,6 +30,7 @@ class UserManager(BaseUserManager):
         return user
 
 
+# Defines User object
 class User(AbstractBaseUser, PermissionsMixin):
     """User class."""
     email = models.EmailField(max_length=255, unique=True)
@@ -37,11 +39,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
-
+    # Consider email to be a username as well
     USERNAME_FIELD = 'email'
 
 
+# Defines Recipe object
 class Recipe(models.Model):
+    # Connects user with User object
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -52,5 +56,6 @@ class Recipe(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     link = models.CharField(max_length=255, blank=True)
 
+    # Set str() method to return Title of recipe
     def __str__(self):
         return self.title
