@@ -1,5 +1,5 @@
 """"
-Views fro User API.
+Views for User API.
 API views handles the request made to URL
 around HTTP methods (GET, PUT, POST, ...).
 Useful for non-CRUD APIs.

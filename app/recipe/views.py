@@ -1,5 +1,4 @@
 """
-Viewset for non-CRUD APIs.
 Viewsets for CRUD APIs.
 """
 from rest_framework import viewsets, mixins
