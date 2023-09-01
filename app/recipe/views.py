@@ -1,6 +1,6 @@
 """
-Viewset for Recipe API.
-Viewsets are useful for CRUD APIs.
+Viewset for non-CRUD APIs.
+Viewsets for CRUD APIs.
 """
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
