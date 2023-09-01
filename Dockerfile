@@ -15,17 +15,17 @@ EXPOSE 8000
 
 # by default, the mode is deployment, not development
 ARG DEV=false
-# create a virt env inside docker container, 
+# create a virt env inside docker container,
 # upgrade pip, install requirements,
 # create user in the container (not root!)
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     # update the package list
-    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache postgresql-client jpeg-dev && \
     # create a virtual package to store dependencies
     apk add --update --no-cache --virtual .tmp-build-deps \
     # install packages into .temp-build-deps
-        build-base postgresql-dev musl-dev && \
+        build-base postgresql-dev musl-dev zlib zlib-dev && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
