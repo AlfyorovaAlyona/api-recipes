@@ -20,6 +20,7 @@ services:
       - POSTGRES_DB_NAME=devdb
       - POSTGRES_DB_USER=devuser
       - POSTGRES_DB_PASS=changeme
+      - DEBUG=1
     depends_on:
       - postgres_db
 
